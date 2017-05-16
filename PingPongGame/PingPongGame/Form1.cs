@@ -12,47 +12,54 @@ namespace PingPongGame
 {
     public partial class Form1 : Form
     {
-        const int movementSpeed = 3;
-        bool? isLeftPressed, isRightPressed;
-
+        Player player1, player2;
+        Ball ball;
         public Form1()
         {
             InitializeComponent();
+            player1 = new Player(Ground,LabelPlayer1);
+            player2 = new Player(Ground2,LabelPlayer2);
+            ball = new Ball(Ball,player1,player2);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (isLeftPressed== true)
-            {
-                Ground.Location = new Point(Ground.Location.X-movementSpeed, Ground.Location.Y);
-            } else if (isRightPressed == true)
-            {
-                Ground.Location = new Point(Ground.Location.X + movementSpeed, Ground.Location.Y);
-            }
+           
+            player1.ProcessMove();
+            player2.ProcessMove();
+            ball.ProcessMove();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Left)
+            
+            CheckKeys(e, true);
+
+        }
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            CheckKeys(e, false);
+        }
+
+        private void CheckKeys(KeyEventArgs e, bool isLeft)
+        {
+            switch (e.KeyCode)
             {
-                isLeftPressed = true;
-            } else if(e.KeyCode == Keys.Right)
-            {
-                isRightPressed = true;
+                case Keys.Left:
+                    player1.isLeftPressed = isLeft;
+                    break;
+                case Keys.Oemcomma:
+                case Keys.Right:
+                    player1.isRightPressed = isLeft;
+                    break;
+                case Keys.A:
+                    player2.isLeftPressed = isLeft;
+                    break;
+                case Keys.D:
+                    player2.isRightPressed = isLeft;
+                    break;
             }
         }
 
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Right)
-            {
-                isLeftPressed = false;
-              
-            }
-            else if (e.KeyCode == Keys.Right)
-            {
-                isRightPressed = false;
-            }
-        }
     }
 }
