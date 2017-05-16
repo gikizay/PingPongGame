@@ -10,11 +10,24 @@ namespace PingPongGame
     public class Player
     {
         const int movementSpeed = 5;
-        PictureBox ground;
+        public PictureBox ground;
         Label ScoreLabel;
-        int score;
+        private int score;
         public bool isLeftPressed, isRightPressed;
-        
+
+        public int Score
+        {
+            get
+            {
+                return score;
+            }
+
+            set
+            {
+                score = value;
+                ScoreLabel.Text = score.ToString();
+            }
+        }
 
         public Player(PictureBox ground, Label ScoreLabel)
         {

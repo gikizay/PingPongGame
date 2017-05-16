@@ -11,12 +11,18 @@ namespace PingPongGame
     {
 
         private PictureBox ball;
+        Random rand = new Random();
+        public Player topsidePlayer, bottomsidePlayer;
         int xSpeed, ySpeed;
-        public Ball(PictureBox ball)
+       
+        public Ball(PictureBox ball, Player topsidePlayer,Player bottomsidePlayer)
         {
             this.ball = ball;
+            this.topsidePlayer = topsidePlayer;
+            this.bottomsidePlayer = bottomsidePlayer;
             xSpeed = 2;
             ySpeed = 1;
+            ResetBall();
         }
 
         internal void ProcessMove()
@@ -33,16 +39,31 @@ namespace PingPongGame
             }
             if (ball.Location.Y == PongLimitLocation.TopOfGround )
             {
-                Score();
+                Score(topsidePlayer);
             } else if(ball.Location.Y == PongLimitLocation.BottomOfGround - ball.Height)
             {
-                Score();
+                Score(bottomsidePlayer);
+            }
+            if (topsidePlayer.ground.ClientRectangle.Contains(ball.ClientRectangle)
+                || bottomsidePlayer.ground.ClientRectangle.Contains(ball.ClientRectangle) )
+            {
+
             }
         }
 
-        private void Score()
+        private void Score(Player sidePlayer)
         {
-            throw new NotImplementedException();
+            sidePlayer.Score++;
+            ResetBall();
+
+        }
+
+        private void ResetBall()
+        {
+            ball.Location = new System.Drawing.Point((PongLimitLocation.LeftOfGround + PongLimitLocation.RightOfGround) / 2, (PongLimitLocation.TopOfGround + PongLimitLocation.BottomOfGround) / 2);
+            xSpeed = rand.Next(-3, 3);
+            ySpeed = rand.Next(-3, 3);
+
         }
     }
 }
