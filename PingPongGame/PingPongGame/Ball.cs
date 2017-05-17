@@ -33,21 +33,21 @@ namespace PingPongGame
                     Math.Min(limitR, ball.Location.X + xSpeed))
                 , ball.Location.Y + ySpeed);
                
-            if (ball.Location.X == limitR || ball.Location.X == PongLimitLocation.LeftOfGround)
+            if (ball.Location.X >= limitR || ball.Location.X <= PongLimitLocation.LeftOfGround)
             {
                 xSpeed *= -1;
             }
-            if (ball.Location.Y == PongLimitLocation.TopOfGround )
+            if (ball.Location.Y <= PongLimitLocation.TopOfGround )
             {
                 Score(topsidePlayer);
-            } else if(ball.Location.Y == PongLimitLocation.BottomOfGround - ball.Height)
+            } else if(ball.Location.Y >= PongLimitLocation.BottomOfGround - ball.Height)
             {
                 Score(bottomsidePlayer);
             }
-            if (topsidePlayer.ground.ClientRectangle.Contains(ball.ClientRectangle)
-                || bottomsidePlayer.ground.ClientRectangle.Contains(ball.ClientRectangle) )
+            if (topsidePlayer.ground.Bounds.IntersectsWith(ball.Bounds)
+                || bottomsidePlayer.ground.Bounds.IntersectsWith(ball.Bounds) )
             {
-
+                ySpeed *= -1;
             }
         }
 
@@ -61,9 +61,12 @@ namespace PingPongGame
         private void ResetBall()
         {
             ball.Location = new System.Drawing.Point((PongLimitLocation.LeftOfGround + PongLimitLocation.RightOfGround) / 2, (PongLimitLocation.TopOfGround + PongLimitLocation.BottomOfGround) / 2);
-            xSpeed = rand.Next(-3, 3);
-            ySpeed = rand.Next(-3, 3);
+            do
+            {
+                xSpeed = rand.Next(-3, 3);
+                ySpeed = rand.Next(-3, 3);
 
+            } while ((xSpeed+ySpeed)>=3|| Math.Abs(ySpeed)==0);
         }
     }
 }

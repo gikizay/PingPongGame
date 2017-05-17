@@ -96,7 +96,7 @@
             this.LabelPlayer1.AutoSize = true;
             this.LabelPlayer1.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelPlayer1.ForeColor = System.Drawing.Color.White;
-            this.LabelPlayer1.Location = new System.Drawing.Point(77, 422);
+            this.LabelPlayer1.Location = new System.Drawing.Point(79, 422);
             this.LabelPlayer1.Name = "LabelPlayer1";
             this.LabelPlayer1.Size = new System.Drawing.Size(26, 30);
             this.LabelPlayer1.TabIndex = 4;
@@ -108,7 +108,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(109, 422);
+            this.label3.Location = new System.Drawing.Point(111, 422);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(22, 30);
             this.label3.TabIndex = 5;
@@ -120,7 +120,7 @@
             this.LabelPlayer2.AutoSize = true;
             this.LabelPlayer2.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelPlayer2.ForeColor = System.Drawing.Color.White;
-            this.LabelPlayer2.Location = new System.Drawing.Point(137, 422);
+            this.LabelPlayer2.Location = new System.Drawing.Point(139, 422);
             this.LabelPlayer2.Name = "LabelPlayer2";
             this.LabelPlayer2.Size = new System.Drawing.Size(26, 30);
             this.LabelPlayer2.TabIndex = 6;
