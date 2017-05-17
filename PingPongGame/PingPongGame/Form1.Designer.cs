@@ -1,6 +1,6 @@
 ﻿namespace PingPongGame
 {
-    partial class Form1
+    partial class PongForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PongForm));
             this.Ground = new System.Windows.Forms.PictureBox();
             this.Ball = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -48,7 +48,7 @@
             this.Ground.Image = ((System.Drawing.Image)(resources.GetObject("Ground.Image")));
             this.Ground.Location = new System.Drawing.Point(4, 394);
             this.Ground.Name = "Ground";
-            this.Ground.Size = new System.Drawing.Size(174, 25);
+            this.Ground.Size = new System.Drawing.Size(100, 15);
             this.Ground.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Ground.TabIndex = 0;
             this.Ground.TabStop = false;
@@ -57,12 +57,13 @@
             // 
             this.Ball.BackColor = System.Drawing.Color.Transparent;
             this.Ball.Image = ((System.Drawing.Image)(resources.GetObject("Ball.Image")));
-            this.Ball.Location = new System.Drawing.Point(366, 124);
+            this.Ball.Location = new System.Drawing.Point(398, 191);
             this.Ball.Name = "Ball";
-            this.Ball.Size = new System.Drawing.Size(45, 45);
+            this.Ball.Size = new System.Drawing.Size(20, 20);
             this.Ball.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Ball.TabIndex = 1;
             this.Ball.TabStop = false;
+            this.Ball.Visible = false;
             // 
             // timer1
             // 
@@ -75,7 +76,7 @@
             this.Ground2.Image = ((System.Drawing.Image)(resources.GetObject("Ground2.Image")));
             this.Ground2.Location = new System.Drawing.Point(272, 12);
             this.Ground2.Name = "Ground2";
-            this.Ground2.Size = new System.Drawing.Size(174, 25);
+            this.Ground2.Size = new System.Drawing.Size(100, 15);
             this.Ground2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.Ground2.TabIndex = 2;
             this.Ground2.TabStop = false;
@@ -126,7 +127,7 @@
             this.LabelPlayer2.TabIndex = 6;
             this.LabelPlayer2.Text = "0";
             // 
-            // Form1
+            // PongForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -140,7 +141,7 @@
             this.Controls.Add(this.Ball);
             this.Controls.Add(this.Ground);
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "PongForm";
             this.Text = "Ping Pong Smile";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);

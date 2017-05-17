@@ -10,16 +10,22 @@ using System.Windows.Forms;
 
 namespace PingPongGame
 {
-    public partial class Form1 : Form
+    public partial class PongForm : Form
     {
         Player player1, player2;
-        Ball ball;
-        public Form1()
+        public List<Ball> ballList;
+        public PongForm()
         {
             InitializeComponent();
-            player1 = new Player(Ground,LabelPlayer1);
-            player2 = new Player(Ground2,LabelPlayer2);
-            ball = new Ball(Ball,player1,player2);
+            player1 = new Player(Ground, LabelPlayer1);
+            player2 = new Player(Ground2, LabelPlayer2);
+            ballList = new List<Ball>();
+            StarNewGame();
+        }
+
+        private void StarNewGame()
+        {
+            ballList.Add(new Ball(this, Ball, player1, player2));
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -27,7 +33,19 @@ namespace PingPongGame
            
             player1.ProcessMove();
             player2.ProcessMove();
-            ball.ProcessMove();
+            for(int i = ballList.Count-1; i>=0;i--)
+            {
+                if(ballList[i].ProcessMove())
+                {
+                  
+                    ballList.RemoveAt(i);
+                }
+            }
+         
+            if(ballList.Count==0)
+            {
+                StarNewGame();
+            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)

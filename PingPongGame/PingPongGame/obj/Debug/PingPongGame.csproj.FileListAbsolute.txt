@@ -13,6 +13,6 @@ E:\UIT\HK2 2017-2018\Git\PingPongGame\PingPongGame\PingPongGame\obj\Debug\PingPo
 E:\UIT\HK2 2017-2018\Git\PingPongGame\PingPongGame\PingPongGame\bin\Debug\PingPongGame.exe
 E:\UIT\HK2 2017-2018\Git\PingPongGame\PingPongGame\PingPongGame\bin\Debug\PingPongGame.pdb
 E:\UIT\HK2 2017-2018\Git\PingPongGame\PingPongGame\PingPongGame\obj\Debug\PingPongGame.csprojResolveAssemblyReference.cache
-E:\UIT\HK2 2017-2018\Git\PingPongGame\PingPongGame\PingPongGame\obj\Debug\PingPongGame.Form1.resources
 E:\UIT\HK2 2017-2018\Git\PingPongGame\PingPongGame\PingPongGame\obj\Debug\PingPongGame.Properties.Resources.resources
 E:\UIT\HK2 2017-2018\Git\PingPongGame\PingPongGame\PingPongGame\obj\Debug\PingPongGame.csproj.GenerateResource.Cache
+E:\UIT\HK2 2017-2018\Git\PingPongGame\PingPongGame\PingPongGame\obj\Debug\PingPongGame.PongForm.resources

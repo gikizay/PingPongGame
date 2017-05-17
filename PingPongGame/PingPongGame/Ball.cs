@@ -9,64 +9,87 @@ namespace PingPongGame
 {
     public class Ball
     {
-
-        private PictureBox ball;
+        PongForm form;
+        private PictureBox ballPictureBox, ballModel;
         Random rand = new Random();
         public Player topsidePlayer, bottomsidePlayer;
         int xSpeed, ySpeed;
        
-        public Ball(PictureBox ball, Player topsidePlayer,Player bottomsidePlayer)
+        public Ball(PongForm form,PictureBox aballModel, Player topsidePlayer,Player bottomsidePlayer)
         {
-            this.ball = ball;
+            this.form = form;
+            ballModel = aballModel;
+            this.ballPictureBox = new PictureBox();
+            this.ballPictureBox.Size = aballModel.Size;
+            this.ballPictureBox.Image = aballModel.Image;
+            form.Controls.Add(ballPictureBox);
             this.topsidePlayer = topsidePlayer;
             this.bottomsidePlayer = bottomsidePlayer;
-            xSpeed = 2;
-            ySpeed = 1;
+           
             ResetBall();
         }
 
-        internal void ProcessMove()
+        internal bool ProcessMove()
         {
-            var limitR = PongLimitLocation.RightOfGround - ball.Width;
-            ball.Location = new System.Drawing.Point(
-                Math.Max(PongLimitLocation.LeftOfGround,
-                    Math.Min(limitR, ball.Location.X + xSpeed))
-                , ball.Location.Y + ySpeed);
-               
-            if (ball.Location.X >= limitR || ball.Location.X <= PongLimitLocation.LeftOfGround)
+            DoMove();
+            var limitR = PongLimitLocation.RightOfGround - ballPictureBox.Width;
+            if (ballPictureBox.Location.X >= limitR || ballPictureBox.Location.X <= PongLimitLocation.LeftOfGround)
             {
                 xSpeed *= -1;
             }
-            if (ball.Location.Y <= PongLimitLocation.TopOfGround )
+            if (ballPictureBox.Location.Y <= PongLimitLocation.TopOfGround)
             {
                 Score(topsidePlayer);
-            } else if(ball.Location.Y >= PongLimitLocation.BottomOfGround - ball.Height)
+                return true;
+            }
+            else if (ballPictureBox.Location.Y >= PongLimitLocation.BottomOfGround - ballPictureBox.Height)
             {
                 Score(bottomsidePlayer);
+                return true;
             }
-            if (topsidePlayer.ground.Bounds.IntersectsWith(ball.Bounds)
-                || bottomsidePlayer.ground.Bounds.IntersectsWith(ball.Bounds) )
+            if (topsidePlayer.ground.Bounds.IntersectsWith(ballPictureBox.Bounds)
+                || bottomsidePlayer.ground.Bounds.IntersectsWith(ballPictureBox.Bounds))
             {
-                ySpeed *= -1;
+                ySpeed *= -2;
+                //xSpeed *= 2;
+                form.ballList.Add( new Ball(form, ballModel, topsidePlayer, bottomsidePlayer));
+                while (topsidePlayer.ground.Bounds.IntersectsWith(ballPictureBox.Bounds)
+                || bottomsidePlayer.ground.Bounds.IntersectsWith(ballPictureBox.Bounds))
+                {
+                    DoMove();
+
+                }
+
             }
+            return false;
+        }
+
+        private int DoMove()
+        {
+            var limitR = PongLimitLocation.RightOfGround - ballPictureBox.Width;
+            ballPictureBox.Location = new System.Drawing.Point(
+                Math.Max(PongLimitLocation.LeftOfGround,
+                    Math.Min(limitR, ballPictureBox.Location.X + xSpeed))
+                , ballPictureBox.Location.Y + ySpeed);
+            return limitR;
         }
 
         private void Score(Player sidePlayer)
         {
             sidePlayer.Score++;
-            ResetBall();
-
+            form.Controls.Remove(ballPictureBox);
         }
 
         private void ResetBall()
         {
-            ball.Location = new System.Drawing.Point((PongLimitLocation.LeftOfGround + PongLimitLocation.RightOfGround) / 2, (PongLimitLocation.TopOfGround + PongLimitLocation.BottomOfGround) / 2);
+            ballPictureBox.Location = new System.Drawing.Point((PongLimitLocation.LeftOfGround + PongLimitLocation.RightOfGround) / 2, (PongLimitLocation.TopOfGround + PongLimitLocation.BottomOfGround) / 2);
             do
             {
                 xSpeed = rand.Next(-3, 3);
                 ySpeed = rand.Next(-3, 3);
 
-            } while ((xSpeed+ySpeed)>=3|| Math.Abs(ySpeed)==0);
+            } while ((xSpeed+ySpeed)>=3|| Math.Abs(ySpeed)==0 || Math.Abs(xSpeed) == 0);
         }
     }
 }
+   
